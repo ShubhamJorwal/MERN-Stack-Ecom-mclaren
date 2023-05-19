@@ -16,7 +16,6 @@ const errorMiddleware = require("./Middleware/Error")
 app.use(express.json())
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
-// app.use(bodyParser.urlencoded({extended:true}))
 app.use(fileUpload())
 app.use(cors({
     credentials:true,
