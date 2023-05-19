@@ -1,7 +1,9 @@
 const app = require("./app")
-const dotenv = require("dotenv");
+// const dotenv = require("dotenv");
 const cloudinary = require("cloudinary")
 const connectDatabase = require("./Config/database")
+
+const dotenv = require("dotenv/config")
 
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
@@ -13,7 +15,7 @@ process.on("uncaughtException", (err) => {
 
 
 // Config
-dotenv.config({ path: "server/Config/config.env" })
+// dotenv.config({ path: "server/Config/config.env" })
 
 // Connecting database 
 connectDatabase();
@@ -25,9 +27,10 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 })
 
+const port = process.env.PORT || 5000
 
 const server = app.listen(process.env.PORT, () => {
-  console.log(`Server is working on http://localhost:${process.env.PORT}`);
+  console.log(`Server is working on http://localhost:${port}`);
 });
 
 
