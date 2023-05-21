@@ -3,13 +3,13 @@ const app = express();
 const cookieParser = require("cookie-parser")
 const cors = require('cors')
 const bodyParser = require("body-parser")
-const fileUpload = require("express-fileUpload")
-// const dotenv = require("dotenv");
-// const path = require("path");
+const fileUpload = require("express-fileupload")
+const dotenv = require("dotenv");
+const path = require("path");
 
 
 // Config
-// dotenv.config({ path: "server/Config/config.env" })
+dotenv.config({ path: "server/Config/config.env" })
 
 const errorMiddleware = require("./Middleware/Error")
 
@@ -35,12 +35,12 @@ app.use("/a1/v1",order)
 app.use("/a1/v1",payment)
 
 
+// to run together both (server + client)
+app.use(express.static(path.join(__dirname, "dist")));
 
-// app.use(express.static(path.join(__dirname, "../../client/dist")));
-
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "../../client/dist/index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "dist/index.html"));
+});
 
 
 // Middleware for Errors
